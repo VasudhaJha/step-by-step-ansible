@@ -51,14 +51,10 @@ This project will guide you through a **task-based** approach to learning Ansibl
 - **Objective: Understand how to configure Ansible settings for ease of use.**
 
 - Topics Covered:
-  - Creating and editing the ansible.cfg file
-  - Disabling host key checking
-  - Setting default inventory and private key file paths
+  - Ansible Configuration file
 
 - Tasks:
-
-  - Create a custom ansible.cfg file
-  - Run an Ansible ping command without specifying the inventory and key file explicitly
+  - Create a custom ansible.cfg file and run the ansible ping command
 
 ### **Level 3: Running Commands on Managed Nodes**
 
