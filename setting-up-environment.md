@@ -26,7 +26,7 @@ When you create a custom Docker network, containers connected to this network ca
 docker network create ansible_network
 ```
 
-### **3. Create and Run Docker Containers
+### **3. Create and Run Docker Containers**
 
 - **Control Node (Ansible Control Node)**
 
