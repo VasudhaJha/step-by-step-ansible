@@ -39,10 +39,12 @@ This project will guide you through a **task-based** approach to learning Ansibl
   - Installing Ansible
   - Understanding the control node and managed nodes
   - SSH key-based authentication
+  - Ansible Inventory
 
 - Tasks:
+  - Set Up Your Ansible Environment
+  - Create your inventory file
   - Run your first ansible ping command
-  - Install packages using apt/yum modules
 
 ### **Level 2: Configuration Management (ansible.cfg)**
 
