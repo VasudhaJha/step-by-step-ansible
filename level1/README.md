@@ -8,9 +8,9 @@ Learn basic Ansible commands and test connections.
 
 ## **Topics Covered:**
 
-### **1. What is Ansible**
+### **1. What is Ansible?**
 
-Ansible is an open-source tool that allows you to automate tasks like configuration management and application deployment. It is written in Python and can be installed on the control node using the package manager (`apt` for Ubuntu).
+Ansible is an open-source tool that allows you to automate tasks like software installation, configuration management and application deployment. It is written in Python and can be installed on the control node using the package manager for that OS (`apt` for Ubuntu, `yum` for CentOS).
 
 ---
 
@@ -22,9 +22,9 @@ Ansible is an open-source tool that allows you to automate tasks like configurat
 
 - The control node sends tasks to the managed nodes over an encrypted SSH connection.
 
-- No additional software (agent) is needed on the managed nodes—just an SSH service and Python.
+- Ansible is **agentless**, meaning it doesn't require any agent or service running on the managed nodes. Ansible runs entirely from the control node, which sends commands to the managed nodes using SSH.
 
-- Ansible is agentless, meaning it doesn't require any agent or service running on the managed nodes. Ansible runs entirely from the control node, which sends commands to the managed nodes using SSH.
+- No additional software (agent) is needed on the managed nodes—just an SSH service and Python.
 
 ---
 
@@ -45,7 +45,7 @@ SSH keys are used to enable secure, passwordless authentication between the cont
 
 ---
 
-### **4. Inventory**
+### **4. Ansible Inventory**
 
 An inventory file lists the managed nodes (their IP addresses or hostnames) that the control node will manage. This is how Ansible knows which machines to run tasks on.
 
@@ -54,6 +54,29 @@ managed_node_1
 managed_node_2
 managed_node_3
 ```
+
+#### Inventory Formats
+
+1. INI format (default): Uses group headings and `key=value` pairs:
+
+```ini
+[my_servers]
+managed_node_1
+managed_node_2
+```
+
+2. YAML format: Uses structured key-value pairs (requires .yml extension):
+
+```yaml
+all:
+  hosts:
+    managed_node_1:
+    managed_node_2:
+```
+
+- By default, Ansible looks for a file named `inventory` or `hosts` in the project directory. However, you can name it anything (e.g., `my_inventory`, `inventory.txt`, `prod_hosts`, etc.) as long as you specify the path when running Ansible.
+
+- Ansible inventory files are usually plain text files and do not need. But you can still use them for clarity if you prefer.
 
 ## **Tasks**
 
@@ -70,26 +93,50 @@ Follow the steps outlined in [Setting Up Your Environment](../setting-up-environ
 
 ### **2. Create your inventory file**
 
+The inventory file tells Ansible which nodes it should manage.
+
+**Instructions:**
+
+1. Create an inventory file named `inventory`.
+2. Add your managed nodes (use Docker container names or IP addresses).
+3. Run the following command to verify your inventory:
+
+```bash
+ansible all --list-hosts -i inventory
+```
+
 ### **3. Ping Your Managed Nodes**
 
 Run the following command to test connections:
 
 ```bash
-ansible all --key-file </path/to/your/private/key/file> -i <your-inventory-file-name> -m ping
+ansible all -i inventory --key-file /path/to/your/private/key/file -m ping
 ```
+
+**Explanation:**
+
+- `all`: Runs the command on all hosts listed in the inventory file.
+- `-i inventory`: Specifies the inventory file. Replace `inventory` with the actual file name if you used a different name (e.g., `my_inventory`).
+- `--key-file /path/to/your/private/key/file`: Specifies the path to your SSH private key (typically ~/.ssh/id_rsa or /home/ubuntu/.ssh/id_rsa).
+- `-m ping`: The ping module checks if Ansible can connect to the managed nodes. A "pong" response indicates a successful connection.
 
 **Victory Condition:**
 
 You should see `"pong"` responses for all managed nodes.
 
-**Bonus Task**
+### **Bonus Task**
 
-- Improve Your Inventory Using Variables
-- Instead of passing the SSH key as command-line option, update your inventory file to include its path. `Hint: Checkout inventory variables.`
+Instead of passing the SSH key as a command-line option, update your inventory file to include its path.
 
-This is what your command should look like:
+💡 Hint:
+Read up on inventory variables. Check out the `ansible_ssh_private_key_file` inventory variable in Ansible’s documentation.
+
+This is what your command should look like after you make that change:
 
 ```bash
 ansible all -i <your-inventory-file-name> -m ping
 ```
+
+You should see "pong" responses from all managed nodes without passing the SSH key in the command line.
+
 
