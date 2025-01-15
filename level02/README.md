@@ -67,6 +67,36 @@ ansible [core 2.17.7]
 
 In the above example, the system-wide configuration file is being used.
 
+##### Security Consideration: World-Writable Directories
+
+Ansible will not load a configuration file from the current working directory if the directory is world-writable (permissions 777), due to security risks.
+
+**Why?**
+
+A world-writable directory allows any user to create or modify files inside it. If a malicious user places their own `ansible.cfg` file in such a directory, it could:
+
+- Override important settings (e.g., SSH key paths, user permissions).
+- Run malicious pre/post commands with elevated privileges.
+
+**To check the permissions of your directory, run:**
+
+```bash
+ls -ld <directory-name>
+```
+
+```bash
+drwxrwxrwx 2 user user 4096 Jan 1 12:00 my_project/
+```
+
+`rwxrwxrwx` indicates that everyone (owner, group, others) can write to the directory.
+To make the directory secure:
+
+```bash
+chmod 755 <directory-name>
+```
+
+This changes permissions so only the owner can write, while others can only read and execute.
+
 ---
 
 ## **Tasks**
