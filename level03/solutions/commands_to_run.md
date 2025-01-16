@@ -32,3 +32,21 @@ as it doesn't rely on shell specific features like pipes and redirection.
      ```bash
      ansible all -m file -a "path=/tmp/sample_file state=absent"
      ```
+
+3. The `df` command stands for "disk-free," and shows available and used disk space on the Linux system.
+        
+    Use it with the command module by passing it as an argument to see the disk usage.
+
+    ```bash
+    ansible all -m command -a "df -h"
+    ```
+        
+    (the `-h` options displays the output in a human-readable format)
+    
+4. The `free` command can be used to see the amount of free and used memory on your Linux system.
+
+    You can pass it as an argument to the command module like so:
+    
+    ```bash
+    ansible all -m command -a "free"
+    ```    
