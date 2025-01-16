@@ -58,15 +58,17 @@ This project will guide you through a **task-based** approach to learning Ansibl
 
 ### **Level 3: Running Commands on Managed Nodes**
 
-- Objective: Learn to execute shell commands on managed nodes using ad-hoc Ansible commands.
+- **Objective: Learn to execute commands on managed nodes using ad-hoc Ansible commands and Ansible modules.**
 
 - Topics Covered:
-  - Using the command and shell modules
-  - Understanding differences between the command and shell modules
+  - Ad-hoc Commands
+  - Ansible Modules
 
 - Tasks:
-  - Run the uptime command on all managed nodes
-  - Create and delete a temporary file using the command module
+  - Check the system uptime on all managed nodes using ad-hoc commands.
+  - Use the provided modules to create and delete a file on managed nodes.
+  - Use an ad-hoc command to check the disk space usage on all managed nodes.
+  - Run a command to display the memory usage on all managed nodes.
 
 ### **Level 4: Copying Files to Managed Nodes**
 
