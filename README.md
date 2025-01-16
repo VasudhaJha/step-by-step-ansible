@@ -70,19 +70,7 @@ This project will guide you through a **task-based** approach to learning Ansibl
   - Use an ad-hoc command to check the disk space usage on all managed nodes.
   - Run a command to display the memory usage on all managed nodes.
 
-### **Level 4: Copying Files to Managed Nodes**
-
-- Objective: Learn how to copy files from the control node to managed nodes.
-
-- Topics Covered:
-  - Using the copy module to transfer files
-  - Understanding file permissions and ownership
-
-- Tasks:
-  - Copy a "hello.txt" file to /tmp/ on all managed nodes
-  - Verify the contents of the file on one of the managed nodes
-
-### **Level 5: Writing Playbooks**
+### **Level 4: Writing Playbooks**
 
 - **Objective: Understand how to create and execute playbooks for automating tasks.**
 
@@ -94,7 +82,7 @@ This project will guide you through a **task-based** approach to learning Ansibl
   - Write a playbook to update the system packages on managed nodes
   - Add tasks to clean up old logs from /var/log
 
-### **Level 6: Using Variables in Playbooks**
+### **Level 5: Using Variables in Playbooks**
 
 - **Objective: Learn how to make your playbooks more dynamic with variables.**
 
