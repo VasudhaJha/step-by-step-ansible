@@ -1,4 +1,4 @@
-# **Level 1: Getting Started with Ansible**
+# **Level 2: Configuration Management**
 
 ## **Objective:**
 
@@ -31,6 +31,43 @@ private_key_file = /home/ubuntu/.ssh/id_rsa
 
 Unlike the inventory file, whose scope is at the host level, the configuration file applies to the whole of ansible (unless overriden).
 
+#### Available Configuration Options
+
+Ansible provides a wide range of configuration options that can be set in ansible.cfg. To see all the available options, you can use the
+`ansible-config list` command.
+
+This command outputs a detailed list of all configurable options, including:
+
+- The default value of each option.
+- A description of what the option does.
+- The section and key where the option should be placed in ansible.cfg.
+
+Example Output (from ansible-config list):
+
+```plaintext
+ACTION_WARNINGS:
+  default: true
+  description:
+  - By default, Ansible will issue a warning when received from a task action.
+  ini:
+  - key: action_warnings
+    section: defaults
+```
+
+Look for the section key under the ini field in the output of `ansible-config list`. It tells you which section (e.g., [defaults], [privilege_escalation]) the option belongs to.
+
+In this example, the configuration option `action_warnings` should be placed under the [defaults] section in ansible.cfg.
+
+You would add it like this:
+
+```ini
+[defaults]
+action_warnings = true
+```
+
+Tip: Use `ansible-config dump` to see active configurations.
+This is useful for verifying which settings are active and where they are being sourced from (e.g., project-specific, user-level, or system-wide configuration).
+
 #### Scope and Priority of Configuration Files
 
 When Ansible is installed, it creates a system-wide configuration file at `/etc/ansible/ansible.cfg`.
@@ -39,15 +76,25 @@ This file applies to all users and projects unless overridden by a user-level or
 
 Ansible looks for the `ansible.cfg` file in the following order:
 
-1. Project-specific (./ansible.cfg) – The configuration in the current working directory.
+1. `ANSIBLE_CONFIG` environment variable
+
+    You can set this environment variable to specify the exact path to a custom ansible.cfg file:
+
+    ```bash
+    export ANSIBLE_CONFIG=/path/to/custom/ansible.cfg
+    ```
+
+    **Priority: This path is used first if it is set, overriding all other locations.**
+
+2. Project-specific (./ansible.cfg) – The configuration in the current working directory.
 
     **Priority: This file is used first if it exists, overriding all others.**
 
-2. User-level (~/.ansible.cfg) – Applies to all Ansible runs for the current user.
+3. User-level (~/.ansible.cfg) – Applies to all Ansible runs for the current user.
 
     **Priority: This is used if no project-specific configuration is found.**
 
-3. System-wide (/etc/ansible/ansible.cfg) – Applies to all users on the system.
+4. System-wide (/etc/ansible/ansible.cfg) – Applies to all users on the system.
 
     **Priority: This is used only if neither project-specific nor user-level files exist.**
 
@@ -101,7 +148,7 @@ This changes permissions so only the owner can write, while others can only read
 
 ## **Tasks**
 
-### **1. Create a custom ansible.cfg file and run the ansible ping command**
+### **1.Create a custom ansible.cfg file and run the ansible ping command**
 
 1. Specify the following defaults:
 
