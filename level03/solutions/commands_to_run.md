@@ -1,4 +1,4 @@
-# Solution
+# Solutions
 
 1. The [`command`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/command_module.html#ansible-collections-ansible-builtin-command-module) module has been designed to execute any command as if its typed on the terminal without invoking a shell environment. Any command available on the system can run as long
 as it doesn't rely on shell specific features like pipes and redirection.
@@ -16,6 +16,7 @@ as it doesn't rely on shell specific features like pipes and redirection.
      To create and delete files, we need to use these two parameters that this module provides:
      
      **1. path**: Path to the file being managed.
+   
      **2. state**: Determines the desired state of the file or directory. Common values include:
           touch: Creates an empty file.
           absent: Deletes the file or directory.
