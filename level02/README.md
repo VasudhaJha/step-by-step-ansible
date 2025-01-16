@@ -176,5 +176,4 @@ Explore Additional Configuration Options in the Ansible documentation to:
 
 1. Adjust the connection timeout.
 2. Add a log file to capture Ansible run outputs.
-3. Disable fact gathering for performance gains. (Learn about fact gathering first)
 
