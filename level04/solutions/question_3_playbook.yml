@@ -1,0 +1,31 @@
+- name: Manage users and groups
+  hosts: managed_nodes
+  become: yes  # Ensure privilege escalation for user management
+  tasks:
+    - name: Create the devops group
+      ansible.builtin.group:
+        name: devops
+        state: present
+
+    - name: Add the user deploy_user to the devops group
+      ansible.builtin.user:
+        name: deploy_user
+        groups: devops
+        append: yes
+        create_home: true
+
+    - name: Create the .ssh directory for deploy_user
+      ansible.builtin.file:
+        path: /home/deploy_user/.ssh
+        state: directory
+        mode: '0700'
+        owner: deploy_user
+        group: deploy_user
+
+    - name: Copy the control node's public key to the managed node
+      ansible.builtin.copy:
+        src: /home/ubuntu/.ssh/id_rsa.pub
+        dest: /home/deploy_user/.ssh/authorized_keys
+        owner: deploy_user
+        group: deploy_user
+        mode: '0600'
