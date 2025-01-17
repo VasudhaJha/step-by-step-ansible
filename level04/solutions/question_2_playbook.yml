@@ -1,0 +1,31 @@
+- name: Bootstrap managed nodes with python3-apt
+  hosts: managed_nodes
+  gather_facts: false
+  become: yes
+  tasks:
+    - name: Install python3-apt
+      ansible.builtin.raw: apt-get update && apt-get install -y python3-apt
+
+- name: Install and start the Apache HTTP server
+  hosts: managed_nodes
+  become: yes
+  tasks:
+    - name: Install apache2
+      ansible.builtin.apt:
+        name: apache2
+        state: present
+    - name: Verify Apache installation
+      ansible.builtin.shell:
+        cmd: dpkg -l | grep apache2
+    - name: Start apache2 service with fallback
+      block:
+        - name: Start apache2 with systemctl
+          ansible.builtin.service:
+            name: apache2
+            state: started
+            enabled: true
+      rescue:
+        - name: Fallback to start apache2 with command
+          ansible.builtin.command:
+            cmd: service apache2 start
+
