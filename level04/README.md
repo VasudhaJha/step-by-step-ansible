@@ -68,16 +68,14 @@ This performs a dry run and shows file modifications that would happen without a
     - Create a group named devops.
     - Add a user named deploy_user to the devops group with:
         - A home directory /home/deploy_user.
-        - Password authentication enabled (set a dummy password).
     - Ensure the user’s .ssh directory is created and contains an authorized SSH key.
 
 4. Managing Package Versions
 
     Write a playbook to:
 
-    - Install a specific version of nginx (e.g., 1.20.1) on all managed nodes.
+    - Install a specific version of nginx (e.g., >=1.24) on all managed nodes.
     - Verify the installation by running nginx -v and print the result to the console.
-    - If the version installed is incorrect, uninstall it and reinstall the correct version.
 
 TIPS:
 

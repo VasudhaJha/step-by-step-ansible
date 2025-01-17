@@ -1,0 +1,22 @@
+- name: Install version nginx with a specific version
+  hosts: managed_nodes
+  tasks:
+    - name: Update apt cache
+      become: true
+      ansible.builtin.apt:
+        update_cache: true
+
+    - name: Install nginx version >= 1.24
+      become: true
+      ansible.builtin.apt:
+        name: nginx>=1.24
+        state: present
+
+    - name: Verify nginx version
+      ansible.builtin.command:
+        cmd: nginx -v
+      register: nginx_version
+
+    - name: Display nginx version
+      ansible.builtin.debug:
+        msg: "{{ nginx_version.stderr }}"

@@ -75,12 +75,14 @@ This project will guide you through a **task-based** approach to learning Ansibl
 - **Objective: Understand how to create and execute playbooks for automating tasks.**
 
 - Topics Covered:
-  - YAML syntax for Ansible playbooks
-  - Defining tasks, hosts, and handlers
+  - Defining Playbook, Play, Task, and Modules
+  - Verifying Playbooks
 
 - Tasks:
-  - Write a playbook to update the system packages on managed nodes
-  - Add tasks to clean up old logs from /var/log
+  - Basic File Management
+  - Service Installation and Management
+  - User and Group Management
+  - Managing Package Versions
 
 ### **Level 5: Using Variables in Playbooks**
 
