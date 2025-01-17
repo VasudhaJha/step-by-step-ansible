@@ -58,8 +58,8 @@ This performs a dry run and shows file modifications that would happen without a
 
     Write a playbook to:
 
-    - Install httpd (Apache) on all managed nodes.
-    - Ensure the httpd service is started and enabled to start on boot.
+    - Install Apache2 on all managed nodes.
+    - Ensure the Apache2 service is started and enabled to start on boot.
 
 3. User and Group Management
 

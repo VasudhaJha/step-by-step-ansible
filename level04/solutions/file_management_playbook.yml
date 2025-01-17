@@ -1,0 +1,17 @@
+- name: Create and manage directory and files
+  hosts: managed_nodes
+  tasks:
+    - name: Create practice directory
+      ansible.builtin.file:
+        path: /tmp/ansible_practice
+        mode: '755'
+        state: directory
+    - name: Create a file inside this folder with the correct permissions
+      ansible.builtin.file:
+        path: /tmp/ansible_practice/hello.txt
+        mode: '644'
+        state: touch
+    - name: Add content to the file
+      ansible.builtin.copy:
+        content: "Hello, Ansible!"
+        dest: /tmp/ansible_practice/hello.txt
