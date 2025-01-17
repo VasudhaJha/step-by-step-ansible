@@ -79,5 +79,13 @@ This performs a dry run and shows file modifications that would happen without a
     - Verify the installation by running nginx -v and print the result to the console.
     - If the version installed is incorrect, uninstall it and reinstall the correct version.
 
+TIPS:
+
+- Checkout the [Ansible Playbook Keywords Reference](https://docs.ansible.com/ansible/latest/reference_appendices/playbooks_keywords.html) to find out which other keywords you might need to use. For example, question 2 requires you use to use sudo, to install and start the apache2 service. Look for the keyword which helps you do that. 
+
+- Just like we used the `command` and `file` modules in the previous level, you will need to use the `apt` and `service` modules to solve some of these questions.
+
+- After you've finished writing a playbook, run it in the `syntax-check` and the `check` modes to ensure that the playbook does not have any syntax errors, and runs as you intended it to.
+
 ---
 
